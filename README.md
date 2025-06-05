@@ -1,275 +1,82 @@
-```markdown
-# **MediTrack: Blockchain-Based Medical Supply Chain Management**
+# MediTrack: Blockchain-Based Medical Supply Chain Management
+
+[![GitHub license](https://img.shields.io/github/license/YourGitHubUsername/meditrack?style=flat-square)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/YourGitHubUsername/meditrack?style=flat-square)](https://github.com/YourGitHubUsername/meditrack/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/YourGitHubUsername/meditrack?style=flat-square)](https://github.com/YourGitHubUsername/meditrack/issues)
+[![LinkedIn](https://img.shields.io/badge/Connect_on_LinkedIn-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/yourprofile/)
 
 ---
 
-## **Table of Contents**
+## Table of Contents
 
-* [**Overview**](#overview)
-* [**The Problem**](#the-problem)
-* [**The Solution**](#the-solution)
-* [**Features**](#features)
-* [**Tech Stack**](#tech-stack)
-* [**Architecture**](#architecture)
-* [**Getting Started**](#getting-started)
-    * [**Prerequisites**](#prerequisites)
-    * [**Installation**](#installation)
-    * [**Running Locally**](#running-locally)
-* [**Smart Contract Details**](#smart-contract-details)
-* [**Deployment**](#deployment)
-* [**Future Enhancements**](#future-enhancements)
-* [**Contributing**](#contributing)
-* [**License**](#license)
-* [**Contact**](#contact)
-
----
-
-## **Overview**
-
-MediTrack is a **decentralized application (dApp)** built to revolutionize the medical supply chain. By leveraging **blockchain technology**, it provides an **immutable, transparent, and highly traceable** system for tracking medical supplies from their manufacturing origin to the end-user. This project demonstrates a robust full-stack application built with **Next.js** and integrates seamlessly with **Ethereum smart contracts** and **IPFS** for decentralized data storage.
+* [1. Project Overview](#1-project-overview)
+* [2. The Problem](#2-the-problem)
+* [3. The Solution](#3-the-solution)
+* [4. Key Features](#4-key-features)
+* [5. Technical Architecture](#5-technical-architecture)
+* [6. Tech Stack & Core Dependencies](#6-tech-stack--core-dependencies)
+* [7. Getting Started](#7-getting-started)
+    * [7.1. Prerequisites](#71-prerequisites)
+    * [7.2. Installation & Setup](#72-installation--setup)
+    * [7.3. Configuration](#73-configuration)
+    * [7.4. Running the Application](#74-running-the-application)
+* [8. Smart Contract Details](#8-smart-contract-details)
+* [9. Project Structure](#9-project-structure)
+* [10. Usage & Demo](#10-usage--demo)
+* [11. Testing](#11-testing)
+* [12. Deployment](#12-deployment)
+* [13. Future Enhancements & Roadmap](#13-future-enhancements--roadmap)
+* [14. Contributing](#14-contributing)
+* [15. License](#15-license)
+* [16. Contact](#16-contact)
 
 ---
 
-## **The Problem**
+## 1. Project Overview
 
-The global medical supply chain is critically compromised by a pervasive lack of **verifiable transparency and immutable traceability**, directly enabling the widespread proliferation of **counterfeit and substandard medications**. This systemic vulnerability poses an existential threat to patient safety, erodes public trust in healthcare, and inflicts severe financial and reputational damage upon legitimate pharmaceutical stakeholders.
+MediTrack is a proof-of-concept decentralized application (dApp) engineered to enhance **transparency, traceability, and trust** within the pharmaceutical supply chain. Leveraging the immutable ledger of the **Ethereum blockchain** and the decentralized storage capabilities of **IPFS**, MediTrack provides an auditable, tamper-proof record of medical products from manufacturer to patient. This project showcases a robust full-stack implementation using **Next.js** for a modern web experience, demonstrating proficiency in dApp development and secure data handling.
 
-* **Patients** unknowingly consume ineffective or harmful drugs.
-* **Manufacturers** struggle with product diversion, recalls, and brand damage.
-* **Distributors** risk circulating falsified goods due to unreliable verification.
-* **Healthcare Providers** lack tools for instant medication authentication.
-* **Regulatory Bodies** are hindered by fragmented, opaque data, limiting effective oversight.
+## 2. The Problem
 
----
+The global medical supply chain is plagued by a pervasive lack of **verifiable transparency and immutable traceability**, directly facilitating the widespread proliferation of **counterfeit and substandard medications**. This systemic vulnerability poses severe threats to patient safety, erodes public trust in healthcare, and inflicts substantial financial and reputational damage upon legitimate pharmaceutical stakeholders.
 
-## **The Solution**
+* **Patient Safety Risks:** Individuals unknowingly consume ineffective or harmful counterfeit drugs, leading to adverse health outcomes and increased mortality rates.
+* **Economic & Reputational Damage:** Legitimate manufacturers incur significant financial losses from diverted products and brand erosion due.
+* **Operational Inefficiencies:** Distributors and healthcare providers face challenges in validating product authenticity, leading to delays and complications in inventory management and recalls.
+* **Regulatory Challenges:** Authorities struggle with fragmented and opaque data, hindering effective oversight and timely enforcement actions against illicit activities.
 
-MediTrack addresses these challenges by creating a **single source of truth** for medical product provenance. Every significant event in a product's lifecycle (e.g., manufacturing, shipping, receiving, dispensing) is recorded as a **transaction on the Ethereum blockchain via smart contracts**. This creates an **immutable and tamper-proof audit trail** that all authorized participants can verify.
+## 3. The Solution
 
-The dApp provides intuitive interfaces for different roles within the supply chain, ensuring **transparency and accountability** at every step and significantly **reducing the risk of counterfeit medications** entering the legitimate market.
+MediTrack addresses these critical challenges by establishing a **decentralized, verifiable, and transparent single source of truth** for medical product provenance. Every significant event in a product's lifecycle – from manufacturing and packaging to shipping, receiving, and dispensing – is recorded as an **immutable transaction on the Ethereum blockchain via Solidity smart contracts**.
 
----
+This design ensures:
+* **Tamper-Proof Records:** Once recorded, data cannot be altered or deleted.
+* **Enhanced Trust:** All authorized participants can verify a product's complete history.
+* **Streamlined Audits:** Provides an irrefutable audit trail for regulatory compliance.
+* **Counterfeit Mitigation:** Significantly reduces the entry points for illegitimate medications by enabling robust authentication at every handover.
 
-## **Features**
+## 4. Key Features
 
-* **Immutable Transaction Logging:** Utilizes **Solidity smart contracts** on Ethereum to record every supply chain event, ensuring data integrity and tamper-proof records.
-* **QR Code Verification:** Allows stakeholders (e.g., pharmacists, patients) to scan a product's QR code to instantly retrieve its complete, verified history and authenticity details.
-* **Decentralized Document Storage:** Stores crucial documents and certificates (e.g., batch records, quality control reports) on **IPFS**, ensuring data persistence and accessibility without relying on centralized servers.
-* **Role-Based Access Control (RBAC):** Implements distinct access levels for **Manufacturers, Distributors, and Retailers** (e.g., pharmacies, hospitals), allowing them to perform specific actions relevant to their role while maintaining data privacy.
-* **MetaMask Integration:** Provides secure and decentralized user authentication and transaction signing.
-* **Product Lifecycle Tracking:** Tracks products from raw material sourcing (conceptual) through manufacturing, packaging, shipment, distribution, and final dispensation to the end-user.
+* **Immutable Supply Chain Tracking:** Records every product movement and status change on the Ethereum blockchain via custom-built Solidity smart contracts.
+* **QR Code Product Verification:** Enables quick and easy verification of a product's authenticity and history by scanning a unique QR code linked to its on-chain data.
+* **Decentralized Document Storage (IPFS):** Securely stores associated off-chain documents (e.g., batch certificates, quality control reports) on IPFS, with their content hashes recorded on the blockchain for integrity verification.
+* **Role-Based Access Control (RBAC):** Implements distinct permission sets for Manufacturers, Distributors, and Retailers (Pharmacies/Hospitals) to manage their respective actions and data visibility within the dApp.
+* **MetaMask Wallet Integration:** Facilitates secure, decentralized user authentication and enables users to sign and broadcast blockchain transactions directly from their browser.
+* **Comprehensive Product Lifecycle:** Supports tracking products through core stages including Manufacturing, Packaging, Shipment, Receipt, and Dispensing.
 
----
+## 5. Technical Architecture
 
-## **Tech Stack**
+MediTrack employs a modern full-stack dApp architecture that leverages the strengths of both traditional web development and blockchain technologies.
 
-This project is a full-stack dApp, demonstrating proficiency across modern web development and blockchain technologies.
-
-* **Frontend:**
-    * **Next.js (React):** For building a fast, scalable, and SEO-friendly user interface.
-    * **JavaScript:** Primary language for frontend logic.
-    * **Tailwind CSS (or similar CSS framework):** For rapid and consistent styling.
-* **Backend / API:**
-    * **Next.js API Routes:** For handling server-side logic, interacting with smart contracts, and managing IPFS uploads.
-    * **Node.js:** Powers the Next.js runtime environment.
-* **Blockchain:**
-    * **Ethereum:** The underlying blockchain network for smart contract execution.
-    * **Solidity:** Language used to write the smart contracts.
-    * **Hardhat / Truffle (Development Framework):** For smart contract development, testing, and deployment.
-    * **Ethers.js / Web3.js:** JavaScript libraries for interacting with Ethereum smart contracts from the Next.js application.
-* **Decentralized Storage:**
-    * **IPFS (InterPlanetary File System):** For decentralized and content-addressed storage of documents and larger files, such as product certificates.
-* **Authentication:**
-    * **MetaMask:** A browser extension wallet for secure user authentication and signing blockchain transactions.
-* **Blockchain Network Access:**
-    * **Infura:** A reliable and scalable infrastructure provider for connecting to Ethereum networks (Mainnet, Testnets).
-* **Deployment:**
-    * **Vercel / Netlify:** For deploying the Next.js frontend and API routes.
-
----
-
-## **Architecture**
-
-MediTrack's architecture combines the efficiency of a Next.js application with the decentralization and security of blockchain.
-
-```
-+----------------+          +------------------------+
-|    User (Web)  |          |      Next.js (Frontend)  |
-| (Manufacturer, |<-------->| (React UI, API Routes) |
-| Distributor,   |          |                          |
-| Retailer, Patient)|        +------------------------+
-+----------------+                     |
-                                     |
-                                     v
-+-------------------------------------------------+
-|                  Blockchain Interaction Layer   |
-| (Ethers.js/Web3.js via Next.js API Routes)      |
-+-------------------------------------------------+
-           |                                  |
-           v                                  v
-+--------------------+                 +--------------------+
-|   Infura Network   |<---------------->|    Ethereum        |
-|  (Testnet/Mainnet) |                 | (Solidity Smart Contracts) |
-+--------------------+                 +--------------------+
-           |                                  |
-           v                                  v
-+--------------------+                 +--------------------+
-|    MetaMask        |                 |      IPFS          |
-| (User Authentication) |                 | (Decentralized Storage) |
-+--------------------+                 +--------------------+
-```
-
-* **Frontend (Next.js):** Handles user interaction, state management, and makes API calls to its own backend routes.
-* **Next.js API Routes:** Act as a bridge, abstracting direct blockchain interactions, handling IPFS uploads, and potentially managing server-side data for enhanced features (e.g., caching, indexed search if needed).
-* **Smart Contracts (Solidity):** The core logic for tracking product events, ownership transfers, and enforcing supply chain rules, residing immutably on the Ethereum blockchain.
-* **IPFS:** Used for storing off-chain data that's too large or not suitable for direct blockchain storage (e.g., PDF certificates, high-res images). Hashes of IPFS content are stored on the blockchain for verification.
-* **MetaMask:** Enables users to connect their Ethereum wallets, sign transactions, and authenticate with the dApp.
-
----
-
-## **Getting Started**
-
-Follow these steps to set up and run MediTrack locally for development and testing.
-
-### **Prerequisites**
-
-Before you begin, ensure you have the following installed:
-
-* **Node.js (LTS version):** [Download & Install Node.js](https://nodejs.org/)
-* **npm or Yarn:** (Comes with Node.js, or install Yarn: `npm install -g yarn`)
-* **Git:** [Download & Install Git](https://git-scm.com/downloads)
-* **MetaMask Browser Extension:** [Install MetaMask](https://metamask.io/download/)
-* **Basic understanding of blockchain, Ethereum, and Solidity.**
-* **An Infura project ID:** Sign up at [Infura.io](https://infura.io/) to get an API key for a testnet (e.g., Sepolia).
-* **Some test ETH:** Obtain from a faucet for your chosen testnet (e.g., [Sepolia Faucet](https://sepolia-faucet.pk910.de/)).
-
-### **Installation**
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/YourGitHubUsername/meditrack.git](https://github.com/YourGitHubUsername/meditrack.git)
-    cd meditrack
-    ```
-
-2.  **Install frontend dependencies:**
-    ```bash
-    npm install # or yarn install
-    ```
-
-3.  **Install smart contract dependencies (if in a separate folder, e.g., `contracts`):**
-    ```bash
-    cd contracts # or wherever your smart contract project resides
-    npm install # or yarn install
-    cd ..
-    ```
-    *(Note: You might integrate Hardhat/Truffle commands directly into your main `package.json` for simplicity in a monorepo setup.)*
-
-4.  **Set up environment variables:**
-    Create a `.env.local` file in the root of your project and add the following, replacing placeholders with your actual values:
-
-    ```env
-    # Next.js Application Port
-    PORT=3000
-
-    # Infura Project ID (for connecting to Ethereum network)
-    NEXT_PUBLIC_INFURA_PROJECT_ID=YOUR_INFURA_PROJECT_ID
-
-    # Private Key of your deployment wallet (ONLY for development/testnet)
-    # BE EXTREMELY CAREFUL WITH PRIVATE KEYS IN PRODUCTION!
-    PRIVATE_KEY=YOUR_ETHEREUM_PRIVATE_KEY_FOR_DEPLOYMENT
-
-    # Ethereum Network to connect to (e.g., sepolia, goerli)
-    ETHEREUM_NETWORK=sepolia
-
-    # Smart Contract Address (will be populated after deployment)
-    NEXT_PUBLIC_MEDI_TRACK_CONTRACT_ADDRESS=
-    ```
-    * **`PRIVATE_KEY`**: This is needed for deploying your smart contracts to a testnet. For a portfolio, a testnet private key is acceptable. **Never use a private key for a mainnet wallet with real funds in a public repository.**
-    * **`NEXT_PUBLIC_INFURA_PROJECT_ID`**: Your project ID from Infura.
-    * **`ETHEREUM_NETWORK`**: The testnet you're using (e.g., `sepolia`).
-    * **`NEXT_PUBLIC_MEDI_TRACK_CONTRACT_ADDRESS`**: This will be filled in *after* you deploy your smart contracts.
-
-### **Running Locally**
-
-1.  **Compile and Deploy Smart Contracts:**
-    Navigate to your smart contract directory (e.g., `contracts`) and run the deployment script.
-    ```bash
-    cd contracts # or equivalent
-    npx hardhat compile
-    npx hardhat run scripts/deploy.js --network sepolia # or your chosen network
-    ```
-    After successful deployment, copy the deployed contract address and paste it into your `NEXT_PUBLIC_MEDI_TRACK_CONTRACT_ADDRESS` variable in `.env.local`.
-
-2.  **Start the Next.js Development Server:**
-    Navigate back to the project root and start the development server.
-    ```bash
-    npm run dev # or yarn dev
-    ```
-
-3.  **Access the Application:**
-    Open your web browser and navigate to `http://localhost:3000` (or the port specified in your `.env.local`).
-
-4.  **Connect MetaMask:**
-    Ensure your MetaMask wallet is connected to the same Ethereum testnet you deployed your contracts to. You'll use MetaMask to interact with the dApp.
-
----
-
-## **Smart Contract Details**
-
-The core logic of MediTrack resides in its Solidity smart contracts.
-
-* **`MediTrack.sol` (or similar):** This contract manages the creation of new products, tracking their state changes (e.g., `Manufactured`, `Shipped`, `Received`, `Dispensed`), and recording ownership transfers.
-* **Key Functions:**
-    * `addProduct(...)`: Registers a new medical product on the blockchain.
-    * `transferOwnership(...)`: Records the transfer of a product between entities (manufacturer to distributor, distributor to retailer).
-    * `recordEvent(...)`: Logs significant events like quality checks, recalls, or dispense actions.
-    * `getProductHistory(...)`: Retrieves the full, immutable history of a specific product.
-* **Role-Based Access Control:** The contract implements modifiers or access control mechanisms to ensure only authorized roles (e.g., a registered manufacturer) can perform specific actions (e.g., `addProduct`).
-
-*(You would typically link to your contract's source code on GitHub here and potentially an Etherscan link for the deployed contract.)*
-
----
-
-## **Deployment**
-
-MediTrack is designed for easy deployment to modern hosting platforms.
-
-* **Frontend & Next.js API Routes:** Deployed to platforms like [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/) for optimal performance and developer experience with Next.js.
-* **Smart Contracts:** Deployed to a public Ethereum testnet (e.g., Sepolia) via Infura, and eventually to Ethereum Mainnet for a production environment.
-* **IPFS:** Data is pinned to a service like [Pinata](https://www.pinata.cloud/) or a self-hosted IPFS node to ensure persistence.
-
----
-
-## **Future Enhancements**
-
-As a portfolio project, MediTrack has vast potential for expansion:
-
-* **Advanced Analytics & Reporting:** Dashboard for manufacturers to visualize supply chain data, identify bottlenecks, or track market penetration.
-* **Integration with IoT Devices:** Automated data capture from sensors (e.g., temperature, humidity) for sensitive medical products, recorded on-chain.
-* **Regulatory Compliance Modules:** Features specifically designed to meet regulations like DSCSA (US) or EU FMD.
-* **Off-chain Data Indexing:** Implement a dedicated indexing solution (e.g., The Graph) for more complex querying and faster data retrieval that is not possible directly from the blockchain.
-* **Cross-Chain Compatibility:** Explore bridging to other blockchains for broader reach.
-* **Tokenization of Products:** Represent individual products as NFTs for unique identification and ownership.
-* **Advanced User Interface:** Richer UI/UX with real-time updates and notifications.
-
----
-
-## **Contributing**
-
-This is a personal portfolio project, but feedback, suggestions, and feature ideas are always welcome! Feel free to open an issue or reach out.
-
----
-
-## **License**
-
-This project is open-sourced under the MIT License. See the `LICENSE` file for more details.
-
----
-
-## **Contact**
-
-* **Your Name:** [Your Name]
-* **GitHub:** [Your GitHub Profile Link]
-* **LinkedIn:** [Your LinkedIn Profile Link]
-* **Email:** [Your Email Address]
-```
+```mermaid
+graph TD
+    A[User Interface: Next.js App] --> B(API Routes: Next.js Backend)
+    B --> C{Blockchain Interaction: Ethers.js/Web3.js}
+    C --> D(Ethereum Network: Infura Node)
+    D --> E[Smart Contracts: Solidity]
+    E -- Product History / Events --> F(On-Chain Data)
+    B --> G(IPFS Client / Gateway)
+    G --> H[Decentralized Storage: IPFS Network]
+    H -- Document Hashes --> E
+    User --> I(MetaMask Wallet)
+    I -- Wallet Connect & Transaction Signing --> C
